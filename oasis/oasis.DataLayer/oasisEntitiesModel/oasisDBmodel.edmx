@@ -1,0 +1,336 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="OasisModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Detail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="ocBatch">
+          <Key>
+            <PropertyRef Name="BatchId" />
+          </Key>
+          <Property Name="BatchId" Type="int" Nullable="false" />
+          <Property Name="BatchTime" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ocBranch">
+          <Key>
+            <PropertyRef Name="BranchId" />
+          </Key>
+          <Property Name="BranchId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ocObservationFirstLastMeasurement">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="MonthDate" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="MonthDate" Type="date" Nullable="false" />
+          <Property Name="FArmsLeft" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="FArmsRight" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="FChest" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="FAbdomen" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="FWaist" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="FThighLeft" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="FThighRight" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="LArmsLeft" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="LArmsRight" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="LChest" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="LAbdomen" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="LWaist" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="LThighLeft" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="LThighRight" Type="decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="ocUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime" Nullable="false" />
+          <Property Name="UpdateDate" Type="datetime" Nullable="false" />
+          <Property Name="Mobile" Type="varchar" MaxLength="15" Nullable="false" />
+          <Property Name="BirthDate" Type="datetime" />
+          <Property Name="Age" Type="tinyint" />
+          <Property Name="Phone" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsMale" Type="bit" Nullable="false" />
+          <Property Name="IsTrial" Type="bit" Nullable="false" />
+          <Property Name="ExtensionInDays" Type="smallint" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ocUserAttendance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="AttendanceDate" Type="datetime" Nullable="false" />
+          <Property Name="Weight" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="BloodPressure" Type="decimal" Precision="5" Scale="2" />
+          <Property Name="ComplainDesc" Type="varchar" MaxLength="500" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ocUserBatchDetail">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="BranchId" />
+            <PropertyRef Name="BatchId" />
+          </Key>
+          <Property Name="UserId" Type="int" Nullable="false" />
+          <Property Name="BranchId" Type="int" Nullable="false" />
+          <Property Name="BatchId" Type="int" Nullable="false" />
+          <Property Name="StartDate" Type="datetime" Nullable="false" />
+          <Property Name="EndDate" Type="datetime" Nullable="false" />
+          <Property Name="SessionFor" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="OasisModelStoreContainer">
+          <EntitySet Name="Detail" EntityType="Self.Detail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ocBatch" EntityType="Self.ocBatch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ocBranch" EntityType="Self.ocBranch" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ocObservationFirstLastMeasurement" EntityType="Self.ocObservationFirstLastMeasurement" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ocUser" EntityType="Self.ocUser" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ocUserAttendance" EntityType="Self.ocUserAttendance" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ocUserBatchDetail" EntityType="Self.ocUserBatchDetail" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="OasisModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="OasisEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="ocBatches" EntityType="OasisModel.ocBatch" />
+          <EntitySet Name="ocBranches" EntityType="OasisModel.ocBranch" />
+          <EntitySet Name="ocObservationFirstLastMeasurements" EntityType="OasisModel.ocObservationFirstLastMeasurement" />
+          <EntitySet Name="ocUsers" EntityType="OasisModel.ocUser" />
+          <EntitySet Name="ocUserAttendances" EntityType="OasisModel.ocUserAttendance" />
+          <EntitySet Name="ocUserBatchDetails" EntityType="OasisModel.ocUserBatchDetail" />
+          <EntitySet Name="Details" EntityType="OasisModel.Detail" />
+        </EntityContainer>
+        <EntityType Name="ocBatch">
+          <Key>
+            <PropertyRef Name="BatchId" />
+          </Key>
+          <Property Name="BatchId" Type="Int32" Nullable="false" />
+          <Property Name="BatchTime" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ocBranch">
+          <Key>
+            <PropertyRef Name="BranchId" />
+          </Key>
+          <Property Name="BranchId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ocObservationFirstLastMeasurement">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="MonthDate" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="MonthDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="FArmsLeft" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="FArmsRight" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="FChest" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="FAbdomen" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="FWaist" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="FThighLeft" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="FThighRight" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="LArmsLeft" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="LArmsRight" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="LChest" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="LAbdomen" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="LWaist" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="LThighLeft" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="LThighRight" Type="Decimal" Precision="5" Scale="2" />
+        </EntityType>
+        <EntityType Name="ocUser">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="UpdateDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Mobile" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Name="BirthDate" Type="DateTime" Precision="3" />
+          <Property Name="Age" Type="Byte" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsMale" Type="Boolean" Nullable="false" />
+          <Property Name="IsTrial" Type="Boolean" Nullable="false" />
+          <Property Name="ExtensionInDays" Type="Int16" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ocUserAttendance">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="AttendanceDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Weight" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="BloodPressure" Type="Decimal" Precision="5" Scale="2" />
+          <Property Name="ComplainDesc" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="ocUserBatchDetail">
+          <Key>
+            <PropertyRef Name="UserId" />
+            <PropertyRef Name="BranchId" />
+            <PropertyRef Name="BatchId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <Property Name="BranchId" Type="Int32" Nullable="false" />
+          <Property Name="BatchId" Type="Int32" Nullable="false" />
+          <Property Name="StartDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDate" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SessionFor" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Detail">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="OasisModelStoreContainer" CdmEntityContainer="OasisEntities">
+          <EntitySetMapping Name="ocBatches">
+            <EntityTypeMapping TypeName="OasisModel.ocBatch">
+              <MappingFragment StoreEntitySet="ocBatch">
+                <ScalarProperty Name="BatchTime" ColumnName="BatchTime" />
+                <ScalarProperty Name="BatchId" ColumnName="BatchId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ocBranches">
+            <EntityTypeMapping TypeName="OasisModel.ocBranch">
+              <MappingFragment StoreEntitySet="ocBranch">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ocObservationFirstLastMeasurements">
+            <EntityTypeMapping TypeName="OasisModel.ocObservationFirstLastMeasurement">
+              <MappingFragment StoreEntitySet="ocObservationFirstLastMeasurement">
+                <ScalarProperty Name="LThighRight" ColumnName="LThighRight" />
+                <ScalarProperty Name="LThighLeft" ColumnName="LThighLeft" />
+                <ScalarProperty Name="LWaist" ColumnName="LWaist" />
+                <ScalarProperty Name="LAbdomen" ColumnName="LAbdomen" />
+                <ScalarProperty Name="LChest" ColumnName="LChest" />
+                <ScalarProperty Name="LArmsRight" ColumnName="LArmsRight" />
+                <ScalarProperty Name="LArmsLeft" ColumnName="LArmsLeft" />
+                <ScalarProperty Name="FThighRight" ColumnName="FThighRight" />
+                <ScalarProperty Name="FThighLeft" ColumnName="FThighLeft" />
+                <ScalarProperty Name="FWaist" ColumnName="FWaist" />
+                <ScalarProperty Name="FAbdomen" ColumnName="FAbdomen" />
+                <ScalarProperty Name="FChest" ColumnName="FChest" />
+                <ScalarProperty Name="FArmsRight" ColumnName="FArmsRight" />
+                <ScalarProperty Name="FArmsLeft" ColumnName="FArmsLeft" />
+                <ScalarProperty Name="MonthDate" ColumnName="MonthDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ocUsers">
+            <EntityTypeMapping TypeName="OasisModel.ocUser">
+              <MappingFragment StoreEntitySet="ocUser">
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="ExtensionInDays" ColumnName="ExtensionInDays" />
+                <ScalarProperty Name="IsTrial" ColumnName="IsTrial" />
+                <ScalarProperty Name="IsMale" ColumnName="IsMale" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ocUserAttendances">
+            <EntityTypeMapping TypeName="OasisModel.ocUserAttendance">
+              <MappingFragment StoreEntitySet="ocUserAttendance">
+                <ScalarProperty Name="ComplainDesc" ColumnName="ComplainDesc" />
+                <ScalarProperty Name="BloodPressure" ColumnName="BloodPressure" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="AttendanceDate" ColumnName="AttendanceDate" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ocUserBatchDetails">
+            <EntityTypeMapping TypeName="OasisModel.ocUserBatchDetail">
+              <MappingFragment StoreEntitySet="ocUserBatchDetail">
+                <ScalarProperty Name="SessionFor" ColumnName="SessionFor" />
+                <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+                <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+                <ScalarProperty Name="BatchId" ColumnName="BatchId" />
+                <ScalarProperty Name="BranchId" ColumnName="BranchId" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Details">
+            <EntityTypeMapping TypeName="OasisModel.Detail">
+              <MappingFragment StoreEntitySet="Detail">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
